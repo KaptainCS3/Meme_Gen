@@ -1,0 +1,147 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: #000;
+    font-family: 'Inter';
+}
+
+.container{
+    display: grid;
+    width: 110%;
+    height: 550px;
+   grid-template-rows: 75px auto;
+}
+
+.nav{
+    background: linear-gradient(98deg, #672280 1.18%, #A626D3 100%);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.2em;
+    padding: 0 30px;
+}
+
+    .nav-left span:nth-child(2){
+    padding-left: 8px;
+    font-weight: 700;
+    color: #fff;
+}
+
+.nav-bar{
+    color: #fff;
+}
+
+.nav-left{
+    display: flex;
+    align-items: center;
+}
+
+.img-react{
+    width: 150px;
+}
+
+.meme-img{
+    margin-top: 40px;
+    width: 100%;
+    height: 280px;
+    display: flex;
+    justify-content: flex-end;
+    border: 1px solid #A626D3;
+    border-radius: 10px;
+}
+
+.meme-img img{
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+}
+
+main{
+    background: #fff;
+}
+
+.meme-gen{
+    width: 90%;
+    margin: 35px auto;
+}
+.inputs{
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 17px;
+}
+
+button{
+    width: 100%;
+    cursor: pointer;
+    color: #fff;
+    border: none;
+    font-weight: 700;
+    background: linear-gradient(98deg, #672280 1.18%, #A626D3 100%);
+}
+
+h1{
+    color: #fff;
+}
+input{
+    width: 48%;
+    border: 1px solid #D5D4D8;
+    text-indent: 10px;
+}
+
+input, button{
+    height: 35px;
+    border-radius: 5px;
+}
+
+.add{
+    width: 200px;
+    height: 35px;
+    border-radius: 25px;
+    border: 1px solid #D5D4D8;
+}
+
+.state{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-left: 38%;
+}
+/* p{
+    color: #fff;
+}
+.contact{
+    width: 250px;
+    height: 350px;
+    border: 1px solid #D5D4D8;
+    border-radius: 10px;
+    background: #fff;
+} */
+/* .img-contact{
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+}
+article{
+    padding-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+article h1, p{
+    align-self: flex-start;
+    color: #000;
+}
+article h1{
+    padding: 40px 10px 5px 10px;
+}
+article p{
+    padding: 5px 10px;
+} */
