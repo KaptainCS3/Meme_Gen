@@ -7,6 +7,7 @@ import ReactDom from "react-dom";
 // import States from "./component/States";
 // import Test from "./component/Test";
 import ContactCard from './component/ContactCard'
+import Form from "./component/Form";
 // import data from "./data";
 // import answer from './ternary'
 import './style.css'
@@ -14,11 +15,12 @@ const App = () => {
   // const isGoingOut = false;
   return (
     <div className="container">
+      <Form />
       {/* <IsGoingOut /> */}
       {/* <Nav /> */}
       {/* <Main /> */}
       {/* <Test /> */}
-      <ContactCard />
+      {/* <ContactCard /> */}
       {/* <States /> */}
       {/* <Count /> */}
     </div>
