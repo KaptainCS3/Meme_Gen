@@ -94,6 +94,15 @@ input{
     border: 1px solid #D5D4D8;
     text-indent: 10px;
 }
+label{
+    color: #fff;
+    padding-right: 10px;
+}
+.check{
+    display: block;
+    margin-left: 120px;
+    margin-top: -10%;
+}
 
 input, button{
     height: 35px;
