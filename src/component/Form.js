@@ -6,9 +6,11 @@ const Form = () => {
     email: "",
     comment: "",
     isFriendly: true,
+    employment: "",
+    movieList: "",
   });
   function handleChange(event) {
-    const {name, type, value, checked} = event.target;
+    const { name, type, value, checked } = event.target;
     seFormData((prevFormData) => {
       return {
         ...prevFormData,
@@ -16,10 +18,13 @@ const Form = () => {
       };
     });
   }
-  console.log(formData);
+  function handleSubmit(event){
+          event.preventDefault()
+          console.log(formData)
+  }
   return (
     <div>
-      <form>
+      <form onSubmit={handleSubmit}>
         <label htmlFor="fName">First Name</label>
         <input
           type="text"
@@ -72,6 +77,51 @@ const Form = () => {
         <label htmlFor="checkbox" className="check">
           Are you Friendly?
         </label>
+        <br />
+        <br />
+        <fieldset>
+          <legend className="lgd">Current employment status</legend>
+          <input
+            type="radio"
+            id="Uempl"
+            name="employment"
+            value="Unemployed"
+            onClick={handleChange}
+          />
+          <label htmlFor="Uempl">Unemployed</label>
+          <input
+            type="radio"
+            id="pTime"
+            name="employment"
+            value="Part Time"
+            onClick={handleChange}
+          />
+          <label htmlFor="pTime">Part Time</label>
+          <input
+            type="radio"
+            id="fTime"
+            name="employment"
+            value="Full Time"
+            onClick={handleChange}
+          />
+          <label htmlFor="fTime">Full Time</label>
+        </fieldset>
+
+        <label>Select a Favorite movie</label>
+        <br />
+        <br />
+        <select
+          name="movieList"
+          value={formData.movieList}
+          onChange={handleChange}
+        >
+          <option value="">--Choose a movie--</option>
+          <option value="King Kong The Return">King kong the return</option>
+          <option value="Maze Runner">Maze runner</option>
+          <option value="Tom Rider">Tom Rider</option>
+          <option value="Men In Black">Men In Black</option>
+          <option value="Ride Along">Ride Along</option>
+        </select>
         <br />
         <br />
         <button>Submit</button>
