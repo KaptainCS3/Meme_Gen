@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 const Main = () => {
   //create a meme state variable to store current meme display image
   const [meme, setMeme] = useState({
@@ -8,28 +8,21 @@ const Main = () => {
   });
 
   const [allMemes, setAllMemes] = useState([]);
+useEffect(() =>{
+  fetch('https://api.imgflip.com/get_memes')
+  .then(res => res.json())
+  .then(data => setAllMemes(data.data.memes))
+}, [])
+console.log(allMemes)
+function fetchMemeImage(){
+  const randonIndex = Math.floor(Math.random() * allMemes.length)
+  const url = allMemes[randonIndex].url
+  setMeme(prevMeme =>({
+    ...prevMeme,
+    randomImage: url
+  }))
+}
 
-  useEffect(() => {
-    fetch("https://api/imgflip.com/get_memes")
-      .then((res) => res.json())
-      .then((memesData) => setAllMemes(memesData.data.memes));
-  }, []);
-  //function to fetch random image from meme data object
-
-  function fetchMemeImage() {
-    //map and return meme object url
-    const memeObjectUrl = allMemes((items) => {
-      return items.url;
-    });
-    // generate random index to access meme data object url
-    const randomIndex =
-      Math.floor(Math.random() * memeObjectUrl.length - 1) + 1;
-    const url = memeObjectUrl[randomIndex];
-    setMeme((prevImage) => ({
-      ...prevImage,
-      randomImage: url,
-    }));
-  }
 
   function handleChange(event) {
     const { name, value } = event.target;
@@ -59,11 +52,13 @@ const Main = () => {
             />
           </div>
           <div className="get-meme">
-            <button onClick={fetchMemeImage}>Get a new meme image</button>
+            <button 
+            onClick={fetchMemeImage}
+            >Get a new meme image</button>
           </div>
         </div>
         <div className="meme-img">
-          <img src={meme.randomImage} alt={meme.randomImage} />
+          <img src={meme.randomImage} alt={allMemes.name} />
           <h2 className="meme-text top">{meme.topText}</h2>
           <h2 className="meme-text bottom">{meme.bottomText}</h2>
         </div>
