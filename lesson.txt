@@ -25,3 +25,442 @@ const App = () => {
       {/* {show && <Effect />} */}
   );
 };
+
+
+import React, {useState} from 'react'
+import image from '../images/avatar.png'
+import Star from './Star'
+const ContactCard = () => {
+    const [contact, setContact] = useState({
+        firstName: 'John',
+        lastName: 'Doe',
+        phone: '+1 (709) 234-4442',
+        email: 'mbiapplegryn@gmail.com',
+        isFavorite: true
+    })
+
+    function changeState(){
+        setContact(prevContact =>({
+            ...prevContact,
+            isFavorite: !prevContact.isFavorite
+        }))
+    }
+  return (
+    <div className='contact'>
+        <article>
+            <img className='img-contact' src={image} alt='' />
+            <Star
+                isFilled = {contact.isFavorite}
+                handleClick = {changeState}
+            />
+            <h1>{contact.firstName} {contact.lastName}</h1>
+            <p>{contact.phone}</p>
+            <p>{contact.email}</p>
+        </article>
+    </div>
+  )
+}
+
+export default ContactCard
+
+
+import React from "react";
+
+function Count_com(props) {
+  return (
+    <div>
+      <h1>{props.number}</h1>
+    </div>
+  );
+}
+
+export default Count_com;
+
+
+import React, { useState, useEffect } from "react";
+import Count_com from "./Count_com";
+
+const Count = () => {
+  const [count, setCount] = useState(1);
+  const [starWarsData, setStarWarsData] = useState({})
+  function countDown() {
+    if (count === 0) return;
+    setCount((prevCount) => prevCount - 1);
+  }
+  function countUp() {
+    setCount((prevCount) => prevCount + 1);
+  }
+  // useEffect(() => {
+  //   console.log("Effect function ran!");
+  //   fetch(`https://swapi.dev/api/people/${count}`)
+  //     .then(res =>res.json())
+  //     .then(data => setStarWarsData(data))
+  // }, [count]);
+  return (
+    <div>
+      <button onClick={countDown}>&minus;</button>
+      <Count_com number={count} />
+      <button onClick={countUp}>+</button>
+    </div>
+  );
+};
+
+export default Count;
+
+
+import React, { useState } from "react";
+const Form = () => {
+  const [formData, seFormData] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    comment: "",
+    isFriendly: true,
+    employment: "",
+    movieList: "",
+  });
+  function handleChange(event) {
+    const { name, type, value, checked } = event.target;
+    seFormData((prevFormData) => {
+      return {
+        ...prevFormData,
+        [name]: type === "checkbox" ? checked : value,
+      };
+    });
+  }
+  function handleSubmit(event){
+          event.preventDefault()
+          console.log(formData)
+  }
+  return (
+    <div>
+      <form onSubmit={handleSubmit}>
+        <label htmlFor="fName">First Name</label>
+        <input
+          type="text"
+          placeholder="Enter first name"
+          id="fName"
+          name="firstName"
+          value={FormData.firstName}
+          onChange={handleChange}
+        />
+        <br />
+        <br />
+        <label htmlFor="lName">Last Name</label>
+        <input
+          type="text"
+          placeholder="Enter last name"
+          id="lName"
+          name="lastName"
+          value={FormData.lastName}
+          onChange={handleChange}
+        />
+        <br />
+        <br />
+        <label htmlFor="email">Email</label>
+        <input
+          type="email"
+          placeholder="Enter email address"
+          id="email"
+          name="email"
+          value={FormData.email}
+          onChange={handleChange}
+        />
+        <br />
+        <br />
+        <textarea
+          placeholder="Comments"
+          id="cmt"
+          name="comment"
+          value={FormData.comment}
+          onChange={handleChange}
+        />
+        <br />
+        <br />
+        <input
+          type="checkbox"
+          id="checkbox"
+          name="isFriendly"
+          checked={formData.isFriendly}
+          onChange={handleChange}
+        />
+        <label htmlFor="checkbox" className="check">
+          Are you Friendly?
+        </label>
+        <br />
+        <br />
+        <fieldset>
+          <legend className="lgd">Current employment status</legend>
+          <input
+            type="radio"
+            id="Uempl"
+            name="employment"
+            value="Unemployed"
+            onClick={handleChange}
+          />
+          <label htmlFor="Uempl">Unemployed</label>
+          <input
+            type="radio"
+            id="pTime"
+            name="employment"
+            value="Part Time"
+            onClick={handleChange}
+          />
+          <label htmlFor="pTime">Part Time</label>
+          <input
+            type="radio"
+            id="fTime"
+            name="employment"
+            value="Full Time"
+            onClick={handleChange}
+          />
+          <label htmlFor="fTime">Full Time</label>
+        </fieldset>
+
+        <label>Select a Favorite movie</label>
+        <br />
+        <br />
+        <select
+          name="movieList"
+          value={formData.movieList}
+          onChange={handleChange}
+        >
+          <option value="">--Choose a movie--</option>
+          <option value="King Kong The Return">King kong the return</option>
+          <option value="Maze Runner">Maze runner</option>
+          <option value="Tom Rider">Tom Rider</option>
+          <option value="Men In Black">Men In Black</option>
+          <option value="Ride Along">Ride Along</option>
+        </select>
+        <br />
+        <br />
+        <button>Submit</button>
+      </form>
+    </div>
+  );
+};
+
+export default Form;
+
+
+import React, { useState } from "react";
+
+const FormPractice = () => {
+  const [formFilled, setFormFilled] = useState({
+    email: "",
+    password: "",
+    confirmPassword: "",
+    newsLetter: false,
+  });
+  function handleChange(event) {
+    const { type, name, checked, value } = event.target;
+    setFormFilled((prevFilled) => {
+      return {
+        ...prevFilled,
+        [name]: type === "checkbox" ? checked : value,
+      };
+    });
+  }
+  function handleSubmit(event) {
+    event.preventDefault()
+    if (formFilled.password === formFilled.confirmPassword) {
+      console.log("Successfully sign up");
+    } else {
+      alert("Password do not match");
+      return;
+    }
+
+    if (formFilled.newsLetter) {
+      console.log("Thanks for signing up for our newsletter!");
+    } else {
+      return;
+    }
+  }
+  console.log(formFilled);
+  return (
+    <div>
+      <form id="form" onSubmit={handleSubmit}>
+        <label htmlFor="email">Email:</label>
+        <input
+          type="email"
+          name="email"
+          placeholder="Enter email"
+          value={formFilled.email}
+          id="email"
+          onChange={handleChange}
+        />
+
+        <label htmlFor="pwd">Password:</label>
+        <input
+          type="password"
+          name="password"
+          value={formFilled.password}
+          placeholder="Enter password"
+          id="pwd"
+          onChange={handleChange}
+        />
+        <label htmlFor="Cpwd">Confirm Password</label>
+        <input
+          type="password"
+          name="confirmPassword"
+          value={formFilled.confirmPassword}
+          placeholder="Confirm password"
+          id="Cpwd"
+          onChange={handleChange}
+        />
+        <div>
+          <input
+            type="checkbox"
+            checked={formFilled.newsLetter}
+            id="newsLetter"
+            onChange={handleChange}
+            name="newsLetter"
+          />
+          <label htmlFor="newsLetter">I agree to join this news letter</label>
+        </div>
+        <button>Sign Up</button>
+      </form>
+    </div>
+  );
+};
+
+export default FormPractice;
+
+
+import React from "react";
+
+const IsGoingOut = () => {
+  // const [state, setState] = React.useState(true);
+  // function active() {
+  //   setState((prevState) => !prevState);
+  // }
+
+  return (
+    <div>
+      {/* <button className="btn" onClick={active}>
+        Click me!
+      </button>
+      <h1>{state ? 'Yes' : 'No'}</h1> */}
+    </div>
+  );
+};
+
+export default IsGoingOut;
+
+
+import React from 'react'
+import image from '../images/avatar.png'
+import troll from '../images/Troll Face.png'
+
+
+function Star(props) {
+    console.log(props)
+  return (
+    <div>
+      <img src={props.isFilled ? `${image}` : `${troll}`} alt="" className="small" onClick={props.handleClick}/>
+    </div>
+  );
+}
+
+export default Star
+
+// import React from 'react'
+// const States = () => {
+//     const [result, setResult] = React.useState("Leonard")
+//     function action(){
+//         setResult("Appelgryn")
+//     }
+//     function actionReverse(){
+//         setResult("Leonard")
+//     }
+//   return (
+//     <div>
+//         <h2>
+//             is state important to know?
+//         </h2>
+//         <button className='state' onClick={action} onDoubleClick={actionReverse}>{result}</button>
+//     </div>
+//   )
+// }
+
+// export default States
+
+
+import React, {useState} from 'react'
+
+const Test = () => {
+    const [itemsArr, setItemsArr] = useState(['Thing 0 '])
+    function addItems(){
+        setItemsArr(prevArr =>{
+            return [...prevArr, ` Thing  ${prevArr.length}`]
+        })
+    }
+  return (
+    <div>
+        <button className='add' onClick={addItems}>
+            addItems
+        </button>
+        <h1 key={itemsArr}>{itemsArr}</h1>
+    </div>
+  )
+}
+
+export default Test
+
+
+
+import kate from './images/katie-zaferes.png'
+import wedding from './images/wedding-photography.png'
+import bike from './images/mountain-bike.png'
+const imageData = [
+  {
+    id: 1,
+    title: "Life Lessons with Katie Zaferes",
+    description:
+      'I will share with you what I call "Positively Impactful Moments of Disappointment." Throughout my career, many of my highest moments only came after setbacks and losses. But learning from those difficult moments is what gave me the ability to rise above them and reach my goals.',
+    price: 136,
+    coverImg: kate,
+    stats: {
+      rating: 5.0,
+      reviewCount: 6,
+    },
+    location: "Online",
+    openSpots: 0,
+  },
+  {
+    id: 2,
+    title: "Learn Wedding Photography",
+    description:
+      "Interested in becoming a wedding photographer? For beginner and experienced photographers alike, join us in learning techniques required to leave the happy couple with memories that'll last a lifetime.",
+    price: 125,
+    coverImg: wedding,
+    stats: {
+      rating: 5.0,
+      reviewCount: 30,
+    },
+    location: "Online",
+    openSpots: 27,
+  },
+  {
+    id: 3,
+    title: "Group Mountain Biking",
+    description:
+      "Experience the beautiful Norwegian landscape and meet new friends all while conquering rugged terrain on your mountain bike. (Bike provided!)",
+    price: 50,
+    coverImg: bike,
+    stats: {
+      rating: 4.8,
+      reviewCount: 2,
+    },
+    location: "Norway",
+    openSpots: 3,
+  },
+];
+export default imageData;
+
+const isGoingOut = false;
+let answer ;
+
+isGoingOut ? answer = 'Yes' : answer = "No"
+
+export default answer
