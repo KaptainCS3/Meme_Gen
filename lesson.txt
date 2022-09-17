@@ -1,0 +1,27 @@
+// import Count from "./component/Count";
+// import IsGoingOut from './component/IsGoingOut'
+// import States from "./component/States";
+// import Test from "./component/Test";
+// import ContactCard from './component/ContactCard'
+// import Form from "./component/Form";
+// import FormPractice from "./component/FormPractice";
+// import data from "./data";
+// import answer from './ternary'
+// import Count from "./component/Count";
+// import Effect from "./component/Effect";
+const App = () => {
+  // const isGoingOut = false;
+  
+  return (
+      {/* <FormPractice /> */}
+      {/* <Form /> */}
+      {/* <IsGoingOut /> */}
+      
+      {/* <Test /> */}
+      {/* <ContactCard /> */}
+      {/* <States /> */}
+      {/* <Count />  */}
+      {/* <button onClick={toggle}>Toggle WindowTracker</button> */}
+      {/* {show && <Effect />} */}
+  );
+};
