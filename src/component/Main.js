@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 const Main = () => {
   //create a meme state variable to store current meme display image
   const [meme, setMeme] = useState({
